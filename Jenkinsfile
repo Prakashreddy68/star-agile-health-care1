@@ -7,14 +7,14 @@ pipeline {
   stages {
     stage('build the project') {
       steps {
-        git 'https://github.com/lax66/star-agile-health-care_CAP02.git'
+        git 'https://github.com/Prakashreddy68/star-agile-health-care1'
         sh 'mvn clean package'
       }
     }
     stage('Building docker image') {
       steps {
         script {
-          sh 'docker build -t laxg66/capstone02:v1 .'
+          sh 'docker build -t prakash9347/healthcare .'
           sh 'docker images'
         }
       }
@@ -23,7 +23,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker-creds', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
           sh "echo $PASS | docker login -u $USER --password-stdin"
-          sh 'docker push laxg66/capstone02:v1'
+          sh 'docker push prakash9347/healthcare:v1'
         }
       }
     }
